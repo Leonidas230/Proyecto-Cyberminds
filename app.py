@@ -14,9 +14,7 @@ try:
 except ImportError:
     USAR_DDG = False
 
-# ===========================================================================
 # 1. MÓDULO RAG (Índice de la Constitución)
-# ===========================================================================
 
 def _extraer_texto_pdf(ruta: str) -> str:
     from pypdf import PdfReader
@@ -113,9 +111,7 @@ def construir_indice(ruta_documento: str, ruta_cache: str = None) -> IndiceConst
     return IndiceConstitucion(articulos)
 
 
-# ===========================================================================
-# 2. AGENTE CON REGLAS DE TEXTO LIMPIO
-# ===========================================================================
+# 2. AGENTE CON REGLAS DE TEXTO
 
 class AgenteConstitucionalHibrido:
     def __init__(self, client: OpenAI, ruta_constitucion: str = None, modelo="gemini-3.6-flash"):
@@ -178,9 +174,7 @@ class AgenteConstitucionalHibrido:
             return f"Error al comunicarse con la API: {e}"
 
 
-# ===========================================================================
 # 3. INTERFAZ WEB LOCAL (FLASK)
-# ===========================================================================
 
 app = Flask(__name__)
 
@@ -214,7 +208,7 @@ HTML_TEMPLATE = """
 </head>
 <body>
     <div class="chat-container">
-        <h2>⚖️ Agente Constitucional Híbrido (Ecuador)</h2>
+        <h2> Agente Constitucional Híbrido (Ecuador)</h2>
         <div class="chat-box" id="chatBox">
             <div class="message assistant">¡Hola! Soy tu asistente constitucional. Pregúntame tus dudas o marca la casilla si deseas investigación web complementaria.</div>
         </div>
